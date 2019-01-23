@@ -1,0 +1,1 @@
+echo "$(sh ./yChunkUbar/scripts/cpu_script)@$(sh ./yChunkUbar/scripts/mem_script)@$(sh ./yChunkUbar/scripts/networktraffic)@$(sh ./yChunkUbar/scripts/hd_script)"
