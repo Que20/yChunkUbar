@@ -11,12 +11,10 @@ style: """
   right: 0px
   bottom: 4px
   height: 13
-  box-shadow: 0px 0px 10px 0px black;
   padding-left: 2px;
   padding-bottom: 2px;
   background-color: rgba(76, 76, 76, 0.5);
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  box-shadow: rgba(0,0,0,0.8) 0 0 10px;
   
   .stats
     color: #66d9ef;
@@ -28,8 +26,9 @@ style: """
 
 getCPU: (cpu) ->
   cpuNum = parseFloat(cpu)
+  console.log(cpu)
   # I have four cores, so I divide my CPU percentage by four to get the proper number
-  cpuNum = cpuNum/8
+  cpuNum = cpuNum/2
   cpuNum = cpuNum.toFixed(1)
   cpuString = String(cpuNum)
   if cpuNum < 10
@@ -69,17 +68,12 @@ getFreeSpace: (space) ->
   return "<span class='icon'></span>&nbsp;<span class='white'>#{space}gb</span>"
 
 update: (output, domEl) ->
-
-  # split the output of the script
   values = output.split('@')
-
   cpu = values[0]
   mem = values[1]
   down = values[2]
   up   = values[3]
   free = values[4].replace(/[^0-9]/g,'')
-
-  # create an HTML string to be displayed by the widget
   htmlString =  @getNetTraffic(down, up) + "<span>&nbsp⎢&nbsp</span>" +
                 @getMem(mem) + "<span>&nbsp⎢&nbsp</span>" +
                 @getCPU(cpu) + "<span>&nbsp⎢&nbsp</span>" +
